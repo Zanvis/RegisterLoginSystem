@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(uri)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
 
@@ -68,7 +68,8 @@ app.post('/api/login', async (req, res) => {
         return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1h' });
+    // const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user._id, username: user.username }, JWT_SECRET, { expiresIn: '1h' });
     res.json({ token });
 });
 

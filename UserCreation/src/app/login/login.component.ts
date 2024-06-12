@@ -68,7 +68,7 @@ export class LoginComponent {
         .subscribe((response) => {
           this.authService.login(response.token);
           localStorage.setItem('token', response.token);
-          this.router.navigate(['']);
+          this.router.navigate(['/main-page']);
         });
     }
   }

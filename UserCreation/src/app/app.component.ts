@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet, RouterLink, Router } from '@angular/router';
 import { MainPageComponent } from './main-page/main-page.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -18,12 +18,19 @@ import { Observable } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'UserCreation';
   isLoggedIn$!: Observable<boolean>;
-  
+  username!: string | null;
+
   constructor(public authService: AuthService, private router: Router) {
     this.isLoggedIn$ = this.authService.isLoggedIn();
+  }
+
+  ngOnInit(): void {
+    this.authService.getUsername().subscribe((username) => {
+      this.username = username
+    })
   }
 
   logout() {
