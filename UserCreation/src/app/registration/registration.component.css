@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.buttons{
+    color: #FFFBE9;
+    background-color: #AD8B73;
+}

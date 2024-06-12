@@ -1,0 +1,15 @@
+<nav>
+    <mat-toolbar role="heading">
+        <ng-container *ngIf="isLoggedIn$ | async; else loggedOut">
+            <button style="color: #FFFBE9;" (click)="logout()" mat-button>Logout</button>
+        </ng-container>
+        <ng-template #loggedOut>
+            <button style="color: #FFFBE9;" routerLink="/login" routerLinkActive="active" mat-button>Login</button>
+        </ng-template>
+        <button style="color: #FFFBE9;" routerLink="/registration" routerLinkActive="active" mat-button>Registration</button>
+        <button style="color: #FFFBE9;" routerLink="/registration" routerLinkActive="active" mat-icon-button>
+            <mat-icon aria-hidden="false" aria-label="Account icon" fontIcon="account_circle"></mat-icon>
+        </button>
+    </mat-toolbar>
+</nav>
+<router-outlet></router-outlet>

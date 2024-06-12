@@ -1,0 +1,31 @@
+<div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <mat-label>Enter your email</mat-label>
+            <input matInput
+                placeholder="pat@example.com"
+                [formControl]="email"
+                (blur)="updateErrorMessage()"
+                required>
+                <mat-error *ngIf="email.invalid">{{errorMessageEmail}}</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Enter your password</mat-label>
+            <input matInput 
+                [formControl]="password" 
+                [type]="hide ? 'password' : 'text'"
+                (blur)="updateErrorMessage()"
+                required>
+                <mat-error *ngIf="password.invalid">{{errorMessagePassword}}</mat-error>
+            <button mat-icon-button matSuffix type="button" (click)="clickEvent($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <br>
+        <button class="buttons" bu mat-flat-button type="submit">Login</button>
+        <mat-error *ngIf="loginErrorMessage">{{loginErrorMessage}}</mat-error>
+        <br><br>
+        <button class="buttons" type="button" routerLink="" mat-flat-button>Back to main page</button>
+    </form>
+</div>
